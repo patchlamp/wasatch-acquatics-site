@@ -13,50 +13,69 @@ how to change it, and how to check a change is live.
 - Plain HTML/CSS/JS static files. **No frameworks, no build step, no npm, no
   external JS libraries.** If a change seems to need one, find the plain
   way or say it's out of scope.
-- Two pages: `index.html` (home: hero, about, details) and `photos.html`
-  (gallery). `404.html` is what the host shows for a missing page.
+- Five pages, the same five the old site had, at the same paths:
+  `index.html` (home: hero, four service cards, about, "Our Promise",
+  contact form), `about.html`, `services.html` (intro + the four services,
+  each with an id the footer links to), `products.html` (three product
+  cards), `contact.html` (the form + phone/email). `404.html` is what the
+  host shows for a missing page.
 - One stylesheet, `css/style.css`. Colors and fonts are the tokens in `:root`
-  at the top; change the look there, not scattered through the file.
+  at the top; change the look there, not scattered through the file. Fonts
+  are self-hosted in `fonts/` (Inter for everything, Cinzel for the
+  wordmark only) — nothing loads from a third party.
 - One script, `js/main.js` (fade-in on scroll). Motion is transform/opacity
   only, off under `prefers-reduced-motion`, and nothing is hidden with JS off.
-- The header, nav, and footer are repeated in every `.html` file (no build
-  step means no shared includes). When you edit them, make the same edit in
-  **every page**.
-- `images/` holds the photos. `_headers` and `_redirects` are read by the
-  host, not served: `_headers` makes every page `no-cache` (so nobody ever
-  sees a stale page); `_redirects` is for a page that moved. Leave both
-  alone otherwise. With a custom domain every page carries a canonical
-  link to the bare domain (www serves the same site).
+- The header, nav, footer, and the hidden SVG icon sprite at the top of
+  `<body>` are repeated in every `.html` file (no build step means no shared
+  includes). When you edit them, make the same edit in **every page**.
+- **The logo** is `images/logo-mark.svg` (the nested-ring drop, remade as
+  vector) plus the wordmark as live text (`.brand-name` "WASATCH" in Cinzel,
+  `.brand-sub` "Aquatic Specialties"). The look of the logo is Lynn's brand
+  and does not change; if he sends the original logo file, replace the
+  mark with it and keep the same size. `apple-touch-icon.png` is the mark
+  on white.
+- `images/` holds the photos. The two pool photos (`hero-pool-lanes.jpg`,
+  `pool-tiles-water.jpg`) are Pexels stock (free for commercial use); the
+  three product photos are the manufacturers' images carried over from the
+  old site. A real photo of Lynn's work should replace stock whenever he
+  sends one. `_headers` and `_redirects` are read by the host, not served:
+  `_headers` makes every page `no-cache` (so nobody ever sees a stale
+  page); `_redirects` is for a page that moved. Leave both alone otherwise.
+  With a custom domain every page carries a canonical link to the bare
+  domain (www serves the same site).
 - **No trackers, no analytics, no cookie banners, no checkout.** The only
-  forms allowed are the ones that post to patchlamp.com (`newsletter form`
-  prints the sign-up box; contact/booking forms follow the workspace
-  `PLAYBOOK.md`) — nothing on this site ever stores visitor information
-  itself.
-- Placeholder content is marked with `REPLACE-ME` comments. Placeholders
-  must look like placeholders; never invent facts, prices, hours, or quotes.
+  form is the contact form, which posts to
+  `https://patchlamp.com/f/wasatch-acquatics/contact` (emailed to Lynn, copy
+  kept — `newsletter forms` shows what came in). A newsletter box would
+  follow the workspace `PLAYBOOK.md`. Nothing on this site ever stores
+  visitor information itself.
+- **The words are Lynn's.** The copy was carried over from the old site
+  verbatim; change it when he asks, never to "improve" it. Don't invent
+  facts, prices, brands, or claims: the products page lists only the three
+  brands he listed, with no descriptions, until he says more.
 
 ## How to change things
 
-- **Copy** (about text, tagline, details, hours, contact): edit the text in
-  `index.html`. Ask for anything you don't have; don't guess an address or
-  a phone number.
-- **A new photo**: save it as a JPG in `images/` with a plain name
-  (`images/storefront.jpg`), about 1200px on the long side. Texted photos are
-  already converted and resized; move them from `incoming/` (one level up)
-  into `images/`. In `photos.html`, copy one whole `<li>…</li>` block (there
-  is a commented example), set `src` and `alt`, and remove the "Photos coming
-  soon" line once the gallery has a photo. `alt` is a short plain description
-  of what's in the photo; never leave it empty. To change the home-page
-  photo, replace the placeholder `<svg>` in `figure.about-photo` with
-  `<img src="images/…" alt="…">`.
-- **A new page**: copy `photos.html`, change the title and content, and add
-  it to the nav in **every** page.
+- **Copy** (tagline, service text, about, contact details): edit the text
+  in the page it's on. The four service blurbs appear twice — short on
+  `index.html`, full on `services.html` — and the "Get in Touch" block is
+  on both `index.html` and `contact.html`; keep the pairs consistent. Ask
+  for anything you don't have; don't guess an address or a phone number.
+- **A new photo**: save it as a JPG in `images/` with a plain name, about
+  1200px on the long side (a hero photo 1800px). Texted photos are already
+  converted and resized; move them from `incoming/` (one level up) into
+  `images/`. `alt` is a short plain description of what's in the photo;
+  never leave it empty. The home hero is `img.hero-bg` in `index.html`; the
+  about photo is the `figure.feature-photo` on `index.html` / `about.html`.
+- **A new product**: copy one `.product-card` in `products.html` (photo on
+  white, kicker = the category, h3 = the brand/product name).
+- **A new page**: copy `about.html`, change the title, description and
+  content, and add it to the nav in **every** page.
 - **Colors / fonts**: the `:root` tokens in `css/style.css`.
-- **A link** (Instagram, a booking site, a menu on another service): add it
-  to the footer list in every page, or as a `.button` in the section it
-  belongs to. Linking out is always fine; embedding third-party code is not,
-  except a plain `<iframe>` embed from a service the client already uses
-  (a map, a player).
+- **A link** (a supplier, a map): add it to the footer list in every page,
+  or as a `.button` in the section it belongs to. Linking out is always
+  fine; embedding third-party code is not, except a plain `<iframe>` embed
+  from a service the client already uses (a map).
 
 ## Every change goes live — deploy check
 

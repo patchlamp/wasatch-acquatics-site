@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found | Wasatch Aquatic Specialties</title>
-  <meta name="description" content="That page doesn't exist.">
+  <title>Contact | Wasatch Aquatic Specialties</title>
+  <meta name="description" content="Get in touch with Wasatch Aquatic Specialties for commercial pool maintenance in Central Utah. Call (435) 395-9550 or send a message.">
   <meta name="theme-color" content="#10283d">
   <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -45,7 +45,7 @@
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" aria-current="page">Contact</a>
         <a class="button header-call" href="tel:+14353959550"><svg width="16" height="16" aria-hidden="true"><use href="#i-phone"/></svg>(435) 395-9550</a>
       </nav>
     </div>
@@ -54,9 +54,70 @@
   <main id="main">
     <section class="page-header">
       <div class="wrap">
-        <p class="kicker">Error 404</p>
-        <h1>Page not found</h1>
-        <p>That page doesn't exist. <a href="index.html" style="color:#fff">Back to the home page.</a></p>
+        <p class="kicker">Contact</p>
+        <h1>Contact Us</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal">
+      <div class="contact-grid">
+        <div>
+          
+          <h2>Get in Touch</h2>
+          <p class="lede">Ready to elevate your pool's maintenance and performance? Simply fill out the form below, and our team will reach out to you promptly to discuss your specific needs. Trust Wasatch Aquatic Specialties to deliver reliable, expert service that keeps your aquatic environment sparkling year-round.</p>
+          <div class="contact-details" style="margin-top:2rem">
+            <div>
+              <h3>Phone</h3>
+              <a href="tel:+14353959550">(435) 395-9550</a>
+            </div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:lynn@wasatchaquatics.com">lynn@wasatchaquatics.com</a>
+            </div>
+          </div>
+        </div>
+        <!-- Contact form (Patchlamp). Posts to patchlamp.com, which emails it to
+             the business and keeps a copy; nothing is stored on this site. The
+             `website` field is a honeypot — leave it hidden and empty. After a
+             post the page reloads with ?sent=contact and the thanks line shows. -->
+        <form class="contact-form" id="contact" action="https://patchlamp.com/f/wasatch-acquatics/contact" method="post">
+          <p class="form-thanks" hidden>Thanks — your message is on its way. We'll be in touch shortly.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="c-name">Name</label>
+              <input id="c-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="c-phone">Phone</label>
+              <input id="c-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="c-found">How did you find us?</label>
+              <input id="c-found" name="found_us" type="text">
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" required></textarea>
+          </div>
+          <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button" type="submit">Submit</button>
+          <script>
+            (function () {
+              if (location.search.indexOf("sent=contact") !== -1) {
+                document.querySelector("#contact .form-thanks").hidden = false;
+              }
+            })();
+          </script>
+        </form>
+      </div>
       </div>
     </section>
 
